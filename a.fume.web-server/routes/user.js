@@ -34,4 +34,20 @@ router.get('/logout', (req, res, next) => {
   res.status(200).json(result);
 });
 
+router.get('/validate/email', (req, res, next) => {
+  axios.get(`${process.env.API_BASE_URL}user/validate/email?email=${req.query.email}`)
+  .then(response => {
+    const status = response.status;
+    response = response.data.data;
+    res.status(status).json(response);
+  })
+  .catch(err => {
+    if(err.response && err.response.status < 500){
+      res.status(err.response.status).json(err.response.data)
+      return;
+    }
+    next(err);
+  });
+});
+
 module.exports = router;

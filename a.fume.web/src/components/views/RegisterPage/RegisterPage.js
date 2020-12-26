@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { registerUser } from '../../../actions/user_actions';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import {
   Form,
@@ -42,6 +43,21 @@ function RegisterPage(props) {
 
   const dispatch = useDispatch();
   
+  const checkEmail = (email) => {
+    return new Promise((resolve, reject) => {
+      axios.get(`${process.env.REACT_APP_PROXY_API}user/validate/email?email=${email}`)
+      .then(response => {
+        resolve(true);
+      })
+      .catch(err => {
+        if(err.response.status === 409){
+          resolve(false);
+          return;
+        }
+        reject(err);
+      })
+    });
+  }
   return (
 
     <Formik
@@ -59,7 +75,8 @@ function RegisterPage(props) {
       validationSchema={Yup.object().shape({
         email: Yup.string()
           .email('유효하지 않는 Email 형식입니다.')
-          .required('이메일은 아이디로 사용됩니다.'),
+          .required('이메일은 아이디로 사용됩니다.')
+          .test('check-email', 'email 중복 체크',  async (value, context) => (await checkEmail(value))),
         nickname: Yup.string()
           .required('닉네임을 입력해주세요.'),
         password: Yup.string()
@@ -95,6 +112,8 @@ function RegisterPage(props) {
             } else {
               alert(response.payload.message)
             }
+          }).catch(err => {
+            alert(err.response.data.message);
           })
 
           setSubmitting(false);
@@ -123,9 +142,9 @@ function RegisterPage(props) {
                   type='email'
                   value={values.email}
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  onBlur={(e) => { checkEmail(values.email); return handleBlur(e)}}
                   className={
-                    errors.email && touched.email ? 'text-input error' : 'text-input'
+                    (errors.email && touched.email) ? 'text-input error' : 'text-input'
                   }
                 />
                 {errors.email && touched.email && (
