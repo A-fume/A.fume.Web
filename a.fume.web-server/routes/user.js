@@ -28,9 +28,9 @@ router.post('/login', (req, res, next) => {
   })
 });
 
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
   const result = {};
-  console.log(req.body);
+  res.clearCookie('w_auth');
   res.status(200).json(result);
 });
 
