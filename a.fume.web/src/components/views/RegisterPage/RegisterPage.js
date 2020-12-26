@@ -39,7 +39,7 @@ const currentYear = (new Date().getFullYear());
 
 function RegisterPage(props) {
 
-  const [gender, setGender] = useState('여자');
+  const [Gender, setGender] = useState('여자');
 
   const dispatch = useDispatch();
   
@@ -100,7 +100,7 @@ function RegisterPage(props) {
             email: values.email,
             nickname: values.nickname,
             password: values.password,
-            gender: gender,
+            gender: Gender,
             phone: values.phone,
             birth: parseInt(values.birth),
             role: 1
@@ -206,7 +206,7 @@ function RegisterPage(props) {
               <Form.Item required label='Gender'>
                 <Radio.Group 
                   id='gender'
-                  value={gender}
+                  value={Gender}
                   onChange={(e) => { setGender(e.target.value); }} 
                   options={[
                     { label: '남자', value: '남자' },

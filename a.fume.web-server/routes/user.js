@@ -8,17 +8,33 @@ router.get('/auth', (req, res, next) => {
     .then(response => {
       response = response.data.data;
       res.status(200).json(response);
+    })
+    .catch(err => { 
+      if(err.response && err.response.status < 500){
+        res.status(err.response.status).json(err.response.data)
+        return;
+      }
+      next(err);
     });
 });
 
 router.post('/register', (req, res, next) => {
-  const result = {};
-  console.log(req.body);
-  res.status(200).json(result);
+  axios.post(`${process.env.API_BASE_URL}user/register`, req.body)
+  .then(response => {
+    response = response.data.data;
+    res.status(200).json(response);
+  })
+  .catch(err => { 
+    if(err.response && err.response.status < 500){
+      res.status(err.response.status).json(err.response.data)
+      return;
+    }
+    next(err);
+  });
 });
 
 router.post('/login', (req, res, next) => {
-  axios.post(`${process.env.API_BASE_URL}user/login`,req.body , { withCredentials: true })
+  axios.post(`${process.env.API_BASE_URL}user/login`,req.body)
   .then(response => {
     response = response.data.data;
     res.cookie('w_auth', response.token, { 
@@ -26,6 +42,13 @@ router.post('/login', (req, res, next) => {
     });
     res.status(200).json(response);
   })
+  .catch(err => {
+    if(err.response && err.response.status < 500){
+      res.status(err.response.status).json(err.response.data)
+      return;
+    }
+    next(err);
+  });
 });
 
 router.get('/logout', (req, res, next) => {
