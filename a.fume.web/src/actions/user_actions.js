@@ -5,10 +5,9 @@ import {
     AUTH_USER,
     LOGOUT_USER,
 } from './types';
-const USER_SERVER = process.env.REACT_APP_API_SERVER;
 
 export function registerUser(dataToSubmit){
-    const request = axios.post(`${USER_SERVER}user/register`,dataToSubmit)
+    const request = axios.post(`${process.env.REACT_APP_PROXY_API}user/register`,dataToSubmit)
         .then(response => Object.assign({status: response.status}, response.data));
     
     return {
@@ -18,7 +17,7 @@ export function registerUser(dataToSubmit){
 }
 
 export function loginUser(dataToSubmit){
-    const request = axios.post(`${USER_SERVER}user/login`,dataToSubmit)
+    const request = axios.post(`${process.env.REACT_APP_PROXY_API}user/login`,dataToSubmit, { withCredentials: true })
                 .then(response => Object.assign({status: response.status}, response.data));
 
     return {
@@ -28,7 +27,7 @@ export function loginUser(dataToSubmit){
 }
 
 export function auth(){
-    const request = axios.post(`${USER_SERVER}user/auth`)
+    const request = axios.get(`${process.env.REACT_APP_PROXY_API}user/auth`)
     .then(response => Object.assign({status: response.status}, response.data));
 
     return {
@@ -38,7 +37,7 @@ export function auth(){
 }
 
 export function logoutUser(){
-    const request = axios.get(`${USER_SERVER}user/logout`)
+    const request = axios.get(`${process.env.REACT_APP_PROXY_API}user/logout`)
     .then(response => Object.assign({status: response.status}, response.data));
 
     return {
