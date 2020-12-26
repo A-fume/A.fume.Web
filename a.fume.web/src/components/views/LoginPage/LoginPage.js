@@ -33,7 +33,7 @@ function LoginPage(props) {
           .email('Email is invalid')
           .required('Email is required'),
         password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
+          .min(4, 'Password must be at least 6 characters')
           .required('Password is required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
@@ -45,17 +45,17 @@ function LoginPage(props) {
 
           dispatch(loginUser(dataToSubmit))
             .then(response => {
-              if (response.payload.loginSuccess) {
-                window.localStorage.setItem('userId', response.payload.userId);
-                if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id);
-                } else {
-                  localStorage.removeItem('rememberMe');
-                }
-                props.history.push('/');
-              } else {
+              if (response.payload.status !== 200) {
                 setFormErrorMessage('Check out your Account or Password again')
+                return;
               }
+              window.localStorage.setItem('userIdx', response.payload.userIdx);
+              if (rememberMe === true) {
+                window.localStorage.setItem('rememberMe', values.id);
+              } else {
+                localStorage.removeItem('rememberMe');
+              }
+              props.history.push('/');
             })
             .catch(err => {
               setFormErrorMessage('Check out your Account or Password again')
@@ -146,5 +146,3 @@ function LoginPage(props) {
 };
 
 export default withRouter(LoginPage);
-
-

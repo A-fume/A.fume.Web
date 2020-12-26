@@ -21,7 +21,6 @@ dotenv.config();
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
-
 ReactDOM.render(
     <Provider
         store={createStoreWithMiddleware(

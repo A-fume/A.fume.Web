@@ -36,3 +36,6 @@ package-lock.json
 
 # build
 build
+
+# debug
+debug.log

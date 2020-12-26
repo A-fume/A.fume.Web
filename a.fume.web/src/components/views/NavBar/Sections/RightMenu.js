@@ -2,9 +2,8 @@
 import React from 'react';
 import { Menu } from 'antd';
 import axios from 'axios';
-import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -12,7 +11,7 @@ function RightMenu(props) {
   const logoutHandler = () => {
     axios.get(`${process.env.REACT_APP_PROXY_API}user/logout`).then(response => {
       if (response.status === 200) {
-        props.history.push("/login");
+        props.history.push('/login');
       } else {
         alert('Log Out Failed')
       }
@@ -22,18 +21,18 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {
     return (
       <Menu mode={props.mode}>
-        <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+        <Menu.Item key='mail'>
+          <a href='/login'>Signin</a>
         </Menu.Item>
-        <Menu.Item key="app">
-          <a href="/register">Signup</a>
+        <Menu.Item key='app'>
+          <a href='/register'>Signup</a>
         </Menu.Item>
       </Menu>
     )
   } else {
     return (
       <Menu mode={props.mode}>
-        <Menu.Item key="logout">
+        <Menu.Item key='logout'>
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>
       </Menu>
