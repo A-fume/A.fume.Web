@@ -1,0 +1,10 @@
+.sub_filter_container {
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sort_criteria {
+    width: 100px;
+    margin: 10px;
+}
