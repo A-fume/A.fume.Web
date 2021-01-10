@@ -11,6 +11,8 @@
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "formik": "^2.2.6",
+    "http-proxy-middleware": "^1.0.6",
+    "query-string": "^6.13.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-promise": "^3.0.2",
