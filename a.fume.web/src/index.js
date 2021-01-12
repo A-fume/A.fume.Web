@@ -19,18 +19,22 @@ import ReduxThunk from 'redux-thunk';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(
+    promiseMiddleware,
+    ReduxThunk
+)(createStore);
 
 ReactDOM.render(
     <Provider
         store={createStoreWithMiddleware(
-        Reducer,
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}>
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
+            Reducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ &&
+                window.__REDUX_DEVTOOLS_EXTENSION__()
+        )}
+    >
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );
