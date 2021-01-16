@@ -7,7 +7,9 @@ import LoginPage from './views/LoginPage/LoginPage.js';
 import RegisterPage from './views/RegisterPage/RegisterPage.js';
 import PerfumeListPage from './views/PerfumeListPage/PerfumeListPage.js';
 import BrandListPage from './views/BrandPage/BrandListPage.js';
-import BrandPage from './views/BrandPage/BrandPage.js';
+import BrandAddPage from './views/BrandPage/BrandAddPage.js';
+import BrandEditPage from './views/BrandPage/BrandEditPage.js';
+import BrandSheetPage from './views/BrandPage/BrandSheetPage.js';
 import NavBar from './views/NavBar/NavBar';
 import Footer from './views/Footer/Footer';
 
@@ -32,13 +34,23 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/brand/sheet"
+                        component={Auth(BrandSheetPage, true)}
+                    />
+                    <Route
+                        exact
                         path="/brand"
                         component={Auth(BrandListPage, true)}
                     />
                     <Route
                         exact
-                        path="/brand/:brandId"
-                        component={Auth(BrandPage, true)}
+                        path="/brand/edit/:brandId"
+                        component={Auth(BrandEditPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/brand/add"
+                        component={Auth(BrandAddPage, true)}
                     />
                     <Route
                         exact
