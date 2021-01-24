@@ -1,7 +1,11 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+
+dayjs.locale('ko');
 
 const DayUtil = {
     diffFromNow: (date) => {
+        date = dayjs(date);
         let content;
         const diffDay = dayjs().diff(date, 'day');
         if (diffDay > 0) content = `${diffDay}일`;
