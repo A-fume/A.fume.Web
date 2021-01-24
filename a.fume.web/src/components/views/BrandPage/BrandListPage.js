@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Row } from 'antd';
 import axios from 'axios';
-import BrandCards from './Sections/BrandCard.js';
+import Card from '../Common/Card/Card.js';
 import SubFilterView from '../Common/SubFilter/SubFilterView.js';
 import queryString from 'query-string';
 import PaginationBarView from '../Common/PaginationBar/PaginationBarView.js';
@@ -86,11 +86,11 @@ function BrandListPage(props) {
                     {Brands &&
                         Brands.map((brand, index) => (
                             <React.Fragment key={index}>
-                                <BrandCards
+                                <Card
                                     href={`/brand/edit/${brand.brandIdx}`}
                                     image={brand.imageUrl}
                                     id={brand.brandIdx}
-                                    name={brand.name}
+                                    title={brand.name}
                                 />
                             </React.Fragment>
                         ))}

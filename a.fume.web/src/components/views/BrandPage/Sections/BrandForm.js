@@ -2,65 +2,12 @@ import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Input, Button, Typography } from 'antd';
-import './BrandForm.css';
+import Thumb from '../../Common/Thumb.js';
+import Hangul from '../../../util/hangul.js';
+import '../../Common/Form/Form.css';
 
-class Thumb extends React.Component {
-    state = {
-        thumb: undefined,
-    };
+const { firstChoHangul } = Hangul;
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.file) {
-            return;
-        }
-
-        this.setState({}, () => {
-            let reader = new FileReader();
-
-            reader.onloadend = () => {
-                this.setState({ thumb: reader.result });
-            };
-
-            reader.readAsDataURL(nextProps.file);
-        });
-    }
-
-    render() {
-        const { file } = this.props;
-        const { thumb } = this.state;
-
-        if (!file) {
-            return null;
-        }
-
-        return <img src={thumb} alt={file.name} className="perfume-image" />;
-    }
-}
-function first_cho_hangul(str) {
-    const cho = [
-        'ㄱ',
-        'ㄲ',
-        'ㄴ',
-        'ㄷ',
-        'ㄸ',
-        'ㄹ',
-        'ㅁ',
-        'ㅂ',
-        'ㅃ',
-        'ㅅ',
-        'ㅆ',
-        'ㅇ',
-        'ㅈ',
-        'ㅉ',
-        'ㅊ',
-        'ㅋ',
-        'ㅌ',
-        'ㅍ',
-        'ㅎ',
-    ];
-    const code = str.charCodeAt(0) - 44032;
-    return code > -1 && code < 11172 ? cho[Math.floor(code / 588)] : '';
-}
 let mounted = false;
 function BrandForm(props) {
     const { Brand, onSubmit } = props;
@@ -73,7 +20,7 @@ function BrandForm(props) {
         };
     }, []);
     return (
-        <div className="brand-form-container">
+        <div className="form-container">
             <Formik
                 enableReinitialize
                 initialValues={Brand}
@@ -94,7 +41,7 @@ function BrandForm(props) {
                         name: values.name,
                         englishName: values.englishName,
                         description: values.description,
-                        startCharacter: first_cho_hangul(values.name),
+                        startCharacter: firstChoHangul(values.name),
                     };
                     onSubmit(dataToSubmit).then(() => {
                         mounted && setSubmitting(false);
@@ -123,7 +70,7 @@ function BrandForm(props) {
                             >
                                 <div>
                                     {Brand && Brand.brandIdx > 0 && (
-                                        <div>brandIdx: {Brand.brandIdx}</div>
+                                        <div>idx: {Brand.brandIdx}</div>
                                     )}
                                 </div>
                                 <div>
@@ -133,7 +80,7 @@ function BrandForm(props) {
                                         ) : (
                                             <img
                                                 src={values.imageUrl}
-                                                alt={'브랜드 이미지'}
+                                                alt={'이미지'}
                                                 className={'perfume-image'}
                                             />
                                         )}
@@ -151,7 +98,7 @@ function BrandForm(props) {
                                         className="form-control"
                                     />
                                 </div>
-                                <label htmlFor="name">브랜드 이름</label>
+                                <label htmlFor="name">이름</label>
                                 <Form.Item required>
                                     <Input
                                         id="name"
@@ -173,9 +120,7 @@ function BrandForm(props) {
                                     )}
                                 </Form.Item>
 
-                                <label htmlFor="english">
-                                    브랜드 영어 이름
-                                </label>
+                                <label htmlFor="english">영어 이름</label>
                                 <Form.Item required>
                                     <Input
                                         id="englishName"
@@ -199,7 +144,7 @@ function BrandForm(props) {
                                         )}
                                 </Form.Item>
 
-                                <label htmlFor="english">브랜드 설명</label>
+                                <label htmlFor="english">설명</label>
                                 <Form.Item required>
                                     <Input
                                         id="description"
