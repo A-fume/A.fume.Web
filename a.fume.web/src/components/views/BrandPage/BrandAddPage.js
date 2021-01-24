@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import BrandForm from './BrandForm.js';
+import BrandForm from './Sections/BrandForm.js';
 
 function BrandAddPage(props) {
     function postBrand(brand) {

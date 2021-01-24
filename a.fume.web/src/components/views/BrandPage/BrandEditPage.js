@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import BrandForm from './BrandForm.js';
+import BrandForm from './Sections/BrandForm.js';
 
 let isSubscribe;
 function BrandEditPage(props) {

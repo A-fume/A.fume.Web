@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import BrandForm from './BrandForm.js';
-import BrandSheet from './BrandSheet.js';
-import { AppstoreOutlined } from '@ant-design/icons';
+import BrandForm from './Sections/BrandForm.js';
+import BrandSheet from './Sections/BrandSheet.js';
+import { AppstoreOutlined, PlusSquareOutlined } from '@ant-design/icons';
 
 function BrandSheetPage(props) {
     const [Brands, setBrands] = useState([]);
@@ -51,21 +51,6 @@ function BrandSheetPage(props) {
     return (
         <div style={{ width: '100%', margin: '0' }}>
             <div style={{ width: '95%', margin: '1rem auto' }}>
-                <Row type="flex" style={{ margin: '1rem auto' }}>
-                    <Col flex="1">
-                        <h2>
-                            향수 브랜드 리스트
-                            <Link to="/brand">
-                                <AppstoreOutlined />
-                            </Link>
-                        </h2>
-                    </Col>
-                    <Col>
-                        <Link to="/brand/add">
-                            <Button type="primary">브랜드 추가</Button>{' '}
-                        </Link>
-                    </Col>
-                </Row>
                 <Row type="flex">
                     <Col
                         flex="1"
@@ -75,11 +60,21 @@ function BrandSheetPage(props) {
                             overflowY: 'auto',
                         }}
                     >
+                        <Row>
+                            <h2>
+                                향수 브랜드 리스트
+                                <Link to="/brand">
+                                    <AppstoreOutlined />
+                                </Link>
+                                <Link to="/brand/add">
+                                    <PlusSquareOutlined />
+                                </Link>
+                            </h2>
+                        </Row>
                         <BrandSheet
                             Brands={Brands}
                             Brand={Brand}
                             onItemSelect={onItemSelect}
-                            setBrand={setBrand}
                         />
                     </Col>
                     <Col flex={Brand ? '200px' : '0px'}>
