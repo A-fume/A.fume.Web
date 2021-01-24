@@ -2,18 +2,23 @@ tbody tr {
     padding: 10px;
     border: solid 1px gray;
 }
+
 td {
     border: solid 1px gray;
 }
+
 tr.odd {
     background: #E2E2E2;
 }
+
 tr.even {
     background: white;
 }
+
 tr:hover {
     background: lightyellow;
 }
+
 tr.selected {
     background: lightgreen;
 }

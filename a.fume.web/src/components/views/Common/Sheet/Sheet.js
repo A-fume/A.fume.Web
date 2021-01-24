@@ -1,51 +1,9 @@
 import React from 'react';
 import { useSortBy, useTable } from 'react-table';
-import './BrandSheet.css';
-import dayUtil from '../../util/dayUtil.js';
-const { diffFromNow, dateString } = dayUtil;
+import './Sheet.css';
 
-function BrandSheet(props) {
-    const { Brands, Brand, onItemSelect } = props;
-
-    const columns = React.useMemo(
-        () => [
-            {
-                Header: 'no',
-                accessor: 'brandIdx',
-                width: '30px',
-            },
-            {
-                Header: '이름',
-                accessor: 'name',
-                width: '150px',
-            },
-            {
-                Header: 'name',
-                accessor: 'englishName',
-                width: '150px',
-            },
-            {
-                Header: '설명',
-                accessor: 'description',
-                width: 'auto',
-            },
-            {
-                Header: '생성 시간',
-                accessor: 'createdAt',
-                Cell: (props) => <span>{dateString(props.value)}</span>,
-                width: '80px',
-            },
-            {
-                Header: '수정 시간',
-                accessor: 'updatedAt',
-                Cell: (props) => {
-                    return <span>{diffFromNow(props.value)}</span>;
-                },
-                width: '70px',
-            },
-        ],
-        []
-    );
+function Sheet(props) {
+    const { columns, ItemList, Item, onItemSelect } = props;
 
     const {
         getTableProps,
@@ -53,7 +11,7 @@ function BrandSheet(props) {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable({ columns, data: Brands }, useSortBy);
+    } = useTable({ columns, data: ItemList }, useSortBy);
 
     return (
         <table {...getTableProps()} style={{ border: 'solid 1px black' }}>
@@ -97,10 +55,7 @@ function BrandSheet(props) {
                             {...row.getRowProps()}
                             onClick={() => onItemSelect(row)}
                             className={`${
-                                Brand &&
-                                row.original.brandIdx === Brand.brandIdx
-                                    ? 'selected'
-                                    : ''
+                                Item && row.original === Item ? 'selected' : ''
                             } ${row.index % 2 === 1 ? 'odd' : 'even'}`}
                         >
                             {row.cells.map((cell) => {
@@ -118,4 +73,4 @@ function BrandSheet(props) {
     );
 }
 
-export default BrandSheet;
+export default Sheet;
