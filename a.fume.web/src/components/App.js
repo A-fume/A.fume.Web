@@ -10,6 +10,10 @@ import BrandListPage from './views/BrandPage/BrandListPage.js';
 import BrandAddPage from './views/BrandPage/BrandAddPage.js';
 import BrandEditPage from './views/BrandPage/BrandEditPage.js';
 import BrandSheetPage from './views/BrandPage/BrandSheetPage.js';
+import SeriesListPage from './views/SeriesPage/SeriesListPage.js';
+import SeriesAddPage from './views/SeriesPage/SeriesAddPage.js';
+import SeriesEditPage from './views/SeriesPage/SeriesEditPage.js';
+import SeriesSheetPage from './views/SeriesPage/SeriesSheetPage.js';
 import NavBar from './views/NavBar/NavBar';
 import Footer from './views/Footer/Footer';
 
@@ -54,6 +58,24 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/series/sheet"
+                        component={Auth(SeriesSheetPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/series"
+                        component={Auth(SeriesListPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/series/edit/:seriesId"
+                        component={Auth(SeriesEditPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/series/add"
+                        component={Auth(SeriesAddPage, true)}
+                    />
                         path="/perfume"
                         component={Auth(PerfumeListPage, true)}
                     />

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { AppstoreOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import BrandForm from './Sections/BrandForm.js';
 import BrandSheet from './Sections/BrandSheet.js';
-import { AppstoreOutlined, PlusSquareOutlined } from '@ant-design/icons';
 
 function BrandSheetPage(props) {
     const [Brands, setBrands] = useState([]);

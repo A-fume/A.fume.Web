@@ -13,6 +13,9 @@ function LeftMenu(props) {
             <Menu.Item key="brandList">
                 <a href="/brand">Brand</a>
             </Menu.Item>
+            <Menu.Item key="serriesList">
+                <a href="/series">Series</a>
+            </Menu.Item>
             <Menu.Item key="favorite">
                 <a href="/favorite">Favorite</a>
             </Menu.Item>
