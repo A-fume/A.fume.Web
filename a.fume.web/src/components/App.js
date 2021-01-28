@@ -10,6 +10,10 @@ import BrandListPage from './views/BrandPage/BrandListPage.js';
 import BrandAddPage from './views/BrandPage/BrandAddPage.js';
 import BrandEditPage from './views/BrandPage/BrandEditPage.js';
 import BrandSheetPage from './views/BrandPage/BrandSheetPage.js';
+import IngredientListPage from './views/IngredientPage/IngredientListPage.js';
+import IngredientAddPage from './views/IngredientPage/IngredientAddPage.js';
+import IngredientEditPage from './views/IngredientPage/IngredientEditPage.js';
+import IngredientSheetPage from './views/IngredientPage/IngredientSheetPage.js';
 import SeriesListPage from './views/SeriesPage/SeriesListPage.js';
 import SeriesAddPage from './views/SeriesPage/SeriesAddPage.js';
 import SeriesEditPage from './views/SeriesPage/SeriesEditPage.js';
@@ -76,6 +80,28 @@ function App() {
                         path="/series/add"
                         component={Auth(SeriesAddPage, true)}
                     />
+                    <Route
+                        exact
+                        path="/ingredient/sheet"
+                        component={Auth(IngredientSheetPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/ingredient"
+                        component={Auth(IngredientListPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/ingredient/edit/:ingredientId"
+                        component={Auth(IngredientEditPage, true)}
+                    />
+                    <Route
+                        exact
+                        path="/ingredient/add"
+                        component={Auth(IngredientAddPage, true)}
+                    />
+                    <Route
+                        exact
                         path="/perfume"
                         component={Auth(PerfumeListPage, true)}
                     />
