@@ -5,7 +5,7 @@ import Auth from '../hoc/auth.js';
 import LandingPage from './views/LandingPage/LandingPage.js';
 import LoginPage from './views/LoginPage/LoginPage.js';
 import RegisterPage from './views/RegisterPage/RegisterPage.js';
-import PerfumeListPage from './views/PerfumeListPage/PerfumeListPage.js';
+//import PerfumeListPage from './views/PerfumeListPage/PerfumeListPage.js';
 import BrandListPage from './views/BrandPage/BrandListPage.js';
 import BrandAddPage from './views/BrandPage/BrandAddPage.js';
 import BrandEditPage from './views/BrandPage/BrandEditPage.js';
@@ -104,7 +104,7 @@ function App() {
                         exact
                         path="/perfume"
                         component={Auth(PerfumeListPage, true)}
-                    />
+                    />*/}
                     {/* <Route exact path='/perfume/:perfumeId' component={Auth(PerfumeDetail, null)} />*/}
                 </Switch>
             </div>

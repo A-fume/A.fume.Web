@@ -57,7 +57,7 @@ function SeriesListPage(props) {
         <div style={{ width: '100%', margin: '0' }}>
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <h2>
-                    향수 재료 리스트{' '}
+                    향수 계열 리스트
                     <Link to="series/sheet">
                         <FileTextOutlined />
                     </Link>
