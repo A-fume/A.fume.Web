@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Input, Button, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 import Thumb from '../../Common/Thumb.js';
 import Hangul from '../../../util/hangul.js';
 import '../../Common/Form/Form.css';
@@ -62,11 +63,15 @@ function IngredientForm(props) {
                     } = props;
                     return (
                         <div className="app">
-                            <Title level={2}>ingredient Info</Title>
+                            <Link
+                                to={`/ingredient/edit/${Ingredient.ingredientIdx}`}
+                            >
+                                <Title level={2}>ingredient Info</Title>
+                            </Link>
                             <form
                                 onSubmit={handleSubmit}
                                 onReset={handleReset}
-                                style={{ height: 350, width: 'auto' }}
+                                style={{ height: 'auto', width: 'auto' }}
                             >
                                 <div>
                                     {Ingredient &&

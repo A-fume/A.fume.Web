@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Col, Row } from 'antd';
 import IngredientForm from './Sections/IngredientForm.js';
+import IngredientDetailView from './Sections/IngredientDetailView.js';
 
 let isSubscribe;
 function IngredientEditPage(props) {
@@ -13,6 +15,7 @@ function IngredientEditPage(props) {
         createdAt: '',
         updatedAt: '',
     });
+    const [SeriesList, setSeriesList] = useState([]);
 
     function postIngredient(ingredient) {
         const endpoint = `${process.env.REACT_APP_PROXY_API}ingredient/`;
@@ -40,15 +43,38 @@ function IngredientEditPage(props) {
             });
     }
 
+    function getSeriesList(ingredientId) {
+        const endpoint = `${process.env.REACT_APP_PROXY_API}ingredient`;
+        return axios
+            .get(`${endpoint}/${ingredientId}/series`)
+            .then((response) => {
+                setSeriesList(response.data);
+            })
+            .catch(console.log);
+    }
+
     useEffect(() => {
         isSubscribe = true;
         getBrand(props.match.params.ingredientId);
+        getSeriesList(props.match.params.ingredientId);
         return () => {
             isSubscribe = false;
         };
     }, [props.match.params.ingredientId]);
 
-    return <IngredientForm Ingredient={Ingredient} onSubmit={postIngredient} />;
+    return (
+        <Row gutter={[2, 1]} align="center">
+            <Col flex="1">
+                <IngredientForm
+                    Ingredient={Ingredient}
+                    onSubmit={postIngredient}
+                />
+            </Col>
+            <Col flex="1">
+                <IngredientDetailView SeriesList={SeriesList} />
+            </Col>
+        </Row>
+    );
 }
 
 export default IngredientEditPage;
