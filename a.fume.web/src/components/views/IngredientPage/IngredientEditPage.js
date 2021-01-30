@@ -26,9 +26,7 @@ function IngredientEditPage(props) {
                 alert('수정되었습니다');
                 setIngredient(response.data);
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch(console.log);
     }
 
     function getBrand(ingredientId) {
@@ -38,9 +36,7 @@ function IngredientEditPage(props) {
             .then((response) => {
                 setIngredient(response.data);
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch(console.log);
     }
 
     function getSeriesList(ingredientId) {

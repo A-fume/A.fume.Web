@@ -25,9 +25,7 @@ function SeriesEditPage(props) {
                 alert('수정되었습니다');
                 setSeries(response.data);
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch(console.log);
     }
 
     function getSeries(seriesId) {
@@ -37,9 +35,9 @@ function SeriesEditPage(props) {
             .then((response) => {
                 setSeries(response.data);
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch(console.log);
+    }
+
     function getIngredients(seriesId) {
         const endpoint = `${process.env.REACT_APP_PROXY_API}series`;
         return axios

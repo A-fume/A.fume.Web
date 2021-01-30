@@ -100,12 +100,6 @@ function App() {
                         path="/ingredient/add"
                         component={Auth(IngredientAddPage, true)}
                     />
-                    <Route
-                        exact
-                        path="/perfume"
-                        component={Auth(PerfumeListPage, true)}
-                    />*/}
-                    {/* <Route exact path='/perfume/:perfumeId' component={Auth(PerfumeDetail, null)} />*/}
                 </Switch>
             </div>
             <Footer />
