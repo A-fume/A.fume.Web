@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Input, Button, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 import '../../Common/Form/Form.css';
 
 let mounted = false;
@@ -57,11 +58,13 @@ function SeriesForm(props) {
                     } = props;
                     return (
                         <div className="app">
-                            <Title level={2}>Series Info</Title>
+                            <Link to={`/series/edit/${Series.seriesIdx}`}>
+                                <Title level={2}>Series Info</Title>
+                            </Link>
                             <form
                                 onSubmit={handleSubmit}
                                 onReset={handleReset}
-                                style={{ height: 350, width: 'auto' }}
+                                style={{ height: 'auto', width: 'auto' }}
                             >
                                 <div>
                                     {Series && Series.seriesIdx > 0 && (
