@@ -85,4 +85,23 @@ router.put('/:ingredientIdx', (req, res, next) => {
         });
 });
 
+router.get('/:ingredientIdx/series', (req, res, next) => {
+    const axiosWithToken = axios.create({
+        baseURL: process.env.API_BASE_URL,
+        headers: {
+            'x-access-token': `Bearer ${req.cookies.w_auth}`,
+        },
+    });
+
+    axiosWithToken
+        .get(`/ingredient/${req.params.ingredientIdx}/series`, req.body)
+        .then((response) => {
+            response = response.data.data;
+            res.status(200).json(response);
+        })
+        .catch((err) => {
+            next(err);
+        });
+});
+
 module.exports = router;
